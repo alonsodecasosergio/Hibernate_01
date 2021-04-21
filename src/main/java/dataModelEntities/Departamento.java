@@ -2,10 +2,22 @@ package dataModelEntities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Departamento implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "CODIGO")
 	private int codigo;
+	
+	@Column(name = "NOMBRE")
 	private String nombre;
+	
+	 @Column(name = "COD_RESPONASABLE")
 	private int cod_responsable;
 	
 	public Departamento() {

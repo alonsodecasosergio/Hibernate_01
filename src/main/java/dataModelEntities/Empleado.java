@@ -2,17 +2,47 @@ package dataModelEntities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EMPLEADO")
 public class Empleado implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "CODIGO")
 	private int codigo;
+	
+	@Column(name = "NOMBRE")
 	private String nombre;
+	
+	@Column(name = "APELLIDO1")
 	private String apellido1;
+	
+	@Column(name = "APELLIDO2")
 	private String apellido2;
+	
+	@Column(name = "LUGAR_NACIMIENTO")
 	private String lugarNacimiento;
+	
+	@Column(name = "FECHA_NACIMIENTO")
 	private char fechaNacimiento;
+	
+	@Column(name = "DIRECCION")
 	private String direccion;
+	
+	@Column(name = "TELEFONO")
 	private String telefono;
+	
+	@Column(name = "PUESTO")
 	private String puesto;
+	
+	@Column(name = "COD_DEPARTAMENTO")
 	private int cod_departamento;
 	
 	public Empleado() {
