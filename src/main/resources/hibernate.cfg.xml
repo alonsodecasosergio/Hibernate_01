@@ -12,6 +12,7 @@
 		  <property name="hibernate.format_sql">true</property>
 		  <property name="hibernate.current_session_context_class">thread</property>
 		  <property name="hbm2ddl.auto">create</property>
-		  <mapping resource=""/>
+		  <mapping resource="Empleado.hbm.xml"/>
+		  <mapping resource="Departamento.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
