@@ -1,5 +1,6 @@
 package Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -104,6 +105,18 @@ public class App
 
         				System.out.println(DepartamentoDAO.getDepartamento(session, id).toString());
             		break;
+            		
+            	case 9:
+	        		System.out.println("Introduzca el codigo del departamento");
+	    			id = teclado.nextInt();
+	    			logger.info("Usuario quiere CONSULTAR el empleado con el id: " + id);
+	    			
+	    			List<Empleado> listEmpleados= EmpleadoDAO.getEmployeesToDepartament(session, id);
+	    			
+	    			System.out.println("ESTOS SON LOS EMPLEADOS DEL DEPARTAMENTO " + id);
+	    			listEmpleados.forEach(x -> System.out.println(x.toString()));
+	    			
+        		break;
             	case 0:
             		System.out.println("Programa finalizado");
             		logger.info("PROGRAMA FINALIZADO");
@@ -146,6 +159,7 @@ public class App
     	System.out.println("6. BORRAR DEPARTAMENTO");
     	System.out.println("7. ACTUALIZAR DEPARTAMENTO");
     	System.out.println("8. OBTENER DEPARTAMENTO");
+    	System.out.println("9. OBTENER EMPLEADOS SEGUN EL DEPARTAMENTO");
     	System.out.println("0. SALIR");
     	System.out.println("INSERTE UN NUMERO");
     }

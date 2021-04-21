@@ -70,5 +70,13 @@ public abstract class EmpleadoDAO {
 		logger.debug("Actualizacion del departamento " + empleado.toString());
 
 	}
+	
+	public static List<Empleado> getEmployeesToDepartament(Session s, int deparId) {
+		
+		String hQuery = " from Empleado e where e.cod_departamento = :codigo";
+		List<Empleado> empleado = s.createQuery(hQuery, Empleado.class)
+									.setParameter("codigo", deparId).list();
+		return empleado;
+	}
 
 }
