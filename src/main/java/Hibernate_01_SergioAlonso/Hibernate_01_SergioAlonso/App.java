@@ -34,7 +34,7 @@ public class App
     	teclado.useDelimiter(System.getProperty("line.separator"));
 		teclado.useLocale(Locale.ENGLISH);
 		
-		
+		//INICIO DE SESION 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         tx = session.beginTransaction();
@@ -42,7 +42,7 @@ public class App
         int opcion = 0;
         
         try {
-        	
+        	//MENU
         	do {
             	
             	menu();
@@ -58,22 +58,23 @@ public class App
             	case 2:
     	        		System.out.println("Introduzca el codigo del empleado a borrar");
     	            	int id = teclado.nextInt();
-    	            	logger.info("Usuario quiere BORRAR un empleado.");
+    	            	logger.info("Usuario quiere BORRAR un empleado con el id: " + id);
     	            	EmpleadoDAO.deleteEmpleado(session, id);
             		break;
             		
             	case 3:
             			System.out.println("Introduzca el codigo del empleado a modificar");
             			id = teclado.nextInt();
-            			logger.info("Usuario quiere MODIFICAR un empleado.");
+            			logger.info("Usuario quiere MODIFICAR el empleado con el id: " + id);
             			EmpleadoDAO.updateEmpleado(session, id, pedirEmpleado());
             		break;
             		
             	case 4:
     	        		System.out.println("Introduzca el codigo del empleado a consultar");
     	    			id = teclado.nextInt();
-    	    			logger.info("Usuario quiere CONSULTAR un empleado.");
-    	    			EmpleadoDAO.getEmpleado(session, id).toString();
+    	    			logger.info("Usuario quiere CONSULTAR el empleado con el id: " + id);
+    	    			
+    	    			System.out.println(EmpleadoDAO.getEmpleado(session, id).toString());
             		break;
             		
             	case 5:
@@ -84,14 +85,14 @@ public class App
             	case 6:
     	        		System.out.println("Introduzca el codigo del departamento a borrar");
     	    			id = teclado.nextInt();
-    	    			logger.info("Usuario quiere BORRAR un departamento.");
+    	    			logger.info("Usuario quiere BORRAR el departamento con el id: " + id);
     	    			DepartamentoDAO.deleteDepartamento(session, id);
             		break;
             		
             	case 7:
             			System.out.println("Introduzca el codigo del departamento a modificar");
             			id = teclado.nextInt();
-    	    			logger.info("Usuario quiere MODIFICAR un departamento.");
+    	    			logger.info("Usuario quiere MODIFICAR el departamento con el id: " + id);
 
             			DepartamentoDAO.updateDepartamento(session, id, pedirDepartamento());
             		break;
@@ -99,29 +100,33 @@ public class App
             	case 8:
         				System.out.println("Introduzca el codigo del departamento a consultar");
         				id = teclado.nextInt();
-    	    			logger.info("Usuario quiere CONSULTAR un departamento.");
+    	    			logger.info("Usuario quiere CONSULTAR el departamento con el id: " + id);
 
-        				DepartamentoDAO.getDepartamento(session, id).toString();
+        				System.out.println(DepartamentoDAO.getDepartamento(session, id).toString());
             		break;
             	case 0:
             		System.out.println("Programa finalizado");
+            		logger.info("PROGRAMA FINALIZADO");
             		break;
             		
         		default:
         			System.out.println("Opcion incorrecta");
             	}
             	
-            }while(opcion != 0);
+            }while(opcion != 0);//SI PULSA EL CERO SALDRA DEL MENU
             
+        	//SI NO HA HABIDO NINGUN ERROR SE REALIZA EL VOLCADO A LA BASE DE DATOS
             tx.commit();
         	
         }catch (Exception e) {
+        	//EN CASE DE QUE HAYA UN ERROR SE REALIZA UN ROLLBACK
   		  if (tx != null) {
   		    tx.rollback();
   		  }
   			logger.error("Error en la ejecucion del programa");
   		}
   		finally {
+  			//CIERRE DE LA SESION
   			if (session != null) {
   				session.close();
   			}
@@ -129,7 +134,7 @@ public class App
         
     }
     
-    
+    //METODO EL CUAL MUESTRA UN MENU EN PANTALLA
     public static void menu() {
     	
     	System.out.println(" BASE DE DATOS EMPLEADOS");
@@ -145,6 +150,7 @@ public class App
     	System.out.println("INSERTE UN NUMERO");
     }
     
+    //CREA UN NUEVO EMPLEADO A PARTIR DE LOS DATOS PEDIDOS POR PANTALLA
     public static Empleado pedirEmpleado() {
     	
     	System.out.println("Introduzca el codigo de empleado");
@@ -182,6 +188,7 @@ public class App
     	return emple;
     }
     
+    //CREA UN DEPARTAMENTO A PARTIR DE LOS DATOS PEDIDOS AL USUARIO
     public static Departamento pedirDepartamento() {
     	
     	System.out.println("Introduzca el codigo");

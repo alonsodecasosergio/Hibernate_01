@@ -13,11 +13,13 @@ public abstract class DepartamentoDAO {
 	
 	private static Logger logger = LogManager.getLogger(App.class);
 	
+	//INSERTA UN DEPARTAMENTO EN LA BASE DE DATOS
 	public static void inserDepartamento(Session s, Departamento depar) {
 		s.save(depar);
-		logger.info("Inserccion del departamento " + depar.toString());
+		logger.debug("Inserccion del departamento " + depar.toString());
 	}
 	
+	//DEVUELVE UNA LISTA CON TODOS LOS DEPARTAMENTOS
 	public static List<Departamento> getAllDepartamento(Session s){
 		String hQuery = "from Departamento";
 		List<Departamento> departamentoList = s.createQuery(hQuery, Departamento.class).list();
@@ -25,6 +27,7 @@ public abstract class DepartamentoDAO {
 		return departamentoList;
 	}
 	
+	//DEVUELVE EL DEPARTAMENTO SEGUN SU CODIGO
 	public static Departamento getDepartamento(Session s, int departamentoId) {
 		String hQuery = " from Departamento d where d.codigo = :codigo";
 		Departamento departamento = s.createQuery(hQuery, Departamento.class)
@@ -34,16 +37,18 @@ public abstract class DepartamentoDAO {
 		return departamento;
 	}
 	
+	//BORRA UN DEPARTAMENTO SEGUN SU CODIGO DE DEPARTAMENTO
 	public static void deleteDepartamento(Session s, int departamentoId) {
 		
 		Departamento depar = s.get(Departamento.class, departamentoId);
 		
 		s.delete(depar);
 		
-		logger.info("Borrado del departamento: " + depar.toString());
+		logger.debug("Borrado del departamento: " + depar.toString());
 		
 	}
 	
+	//ACTUALIZA LOS DATOS DEL DEPARTAMENTO 
 	public static void updateDepartamento(Session s, int departamentoId, Departamento deparActualizado) {
 		
 		Departamento depar = s.get(Departamento.class, departamentoId);
@@ -53,7 +58,7 @@ public abstract class DepartamentoDAO {
 		
 		s.update(depar);
 		
-		logger.info("Actualizacion del departamento: " + depar.toString());
+		logger.debug("Actualizacion del departamento: " + depar.toString());
 	}
 
 }
