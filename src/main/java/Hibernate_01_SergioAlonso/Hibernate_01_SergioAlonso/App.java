@@ -38,7 +38,7 @@ public class App
 		//INICIO DE SESION 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        tx = session.beginTransaction();
+        //tx = session.beginTransaction();
         
         int opcion = 0;
         
@@ -114,7 +114,28 @@ public class App
 	    			List<Empleado> listEmpleados= EmpleadoDAO.getEmployeesToDepartament(session, id);
 	    			
 	    			System.out.println("ESTOS SON LOS EMPLEADOS DEL DEPARTAMENTO " + id);
-	    			listEmpleados.forEach(x -> System.out.println(x.toString()));
+	    			for(int i = 0; i < listEmpleados.size(); i++) {
+	    				System.out.println(listEmpleados.get(i).toString());
+	    			}
+	    			
+        		break;
+            	case 10:
+	        		System.out.println("Introduzca la edad a consultar");
+	    			int edad = teclado.nextInt();
+	    			logger.info("Usuario quiere CONSULTAR los empleado con le edad mayor de: " + edad);
+	    			
+	    			List<Empleado> emple= EmpleadoDAO.getEmployeesToAge(session, edad);
+	    			
+	    			if(emple.size() > 0) {
+	    				System.out.println("ESTOS SON LOS EMPLEADOS DEL DEPARTAMENTO " + edad);
+	    			}else {
+	    				System.out.println("No hay empleados mayores a esa edad");
+	    			}
+	    			
+	    			
+	    			for(int i = 0; i < emple.size(); i++) {
+	    				System.out.println(emple.get(i).toString());
+	    			}
 	    			
         		break;
             	case 0:
@@ -129,14 +150,14 @@ public class App
             }while(opcion != 0);//SI PULSA EL CERO SALDRA DEL MENU
             
         	//SI NO HA HABIDO NINGUN ERROR SE REALIZA EL VOLCADO A LA BASE DE DATOS
-            tx.commit();
+            //tx.commit();
         	
         }catch (Exception e) {
         	//EN CASE DE QUE HAYA UN ERROR SE REALIZA UN ROLLBACK
   		  if (tx != null) {
   		    tx.rollback();
   		  }
-  			logger.error("Error en la ejecucion del programa");
+  			logger.error("Error en la ejecucion del programa",e);
   		}
   		finally {
   			//CIERRE DE LA SESION
@@ -160,6 +181,7 @@ public class App
     	System.out.println("7. ACTUALIZAR DEPARTAMENTO");
     	System.out.println("8. OBTENER DEPARTAMENTO");
     	System.out.println("9. OBTENER EMPLEADOS SEGUN EL DEPARTAMENTO");
+    	System.out.println("10. OBTENER EMPLEADOS DE MAYOR EDAD");
     	System.out.println("0. SALIR");
     	System.out.println("INSERTE UN NUMERO");
     }

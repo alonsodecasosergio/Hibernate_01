@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso.App;
 import dataModelEntities.Empleado;
@@ -73,10 +75,20 @@ public abstract class EmpleadoDAO {
 	
 	public static List<Empleado> getEmployeesToDepartament(Session s, int deparId) {
 		
-		String hQuery = " from Empleado e where e.cod_departamento = :codigo";
+		String hQuery = " from Empleado e where e.cod_departamento = :cod_departamento";
+		
 		List<Empleado> empleado = s.createQuery(hQuery, Empleado.class)
-									.setParameter("codigo", deparId).list();
+									.setParameter("cod_departamento", deparId).list();
+		System.out.println("------" + empleado.size());
 		return empleado;
 	}
-
+	
+	public static List<Empleado> getEmployeesToAge(Session s, int edad) {
+		
+		Criteria criteria = s.createCriteria(Empleado.class);
+		String fecha = edad + "/00/00";
+		List<Empleado> result = criteria.add(Restrictions.le("FECHA_NACIMIENTO", fecha)).list();
+		
+		return result;
+	}
 }
