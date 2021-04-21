@@ -1,0 +1,6 @@
+Hibernate_01_SergioAlonso\Hibernate_01_SergioAlonso\App.class
+dataModelEntities\Departamento.class
+dataModelDAO\DepartamentoDAO.class
+dataModelUtils\HibernateUtil.class
+dataModelDAO\EmpleadoDAO.class
+dataModelEntities\Empleado.class
