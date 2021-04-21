@@ -29,6 +29,7 @@ public class App
 	
     public static void main( String[] args )
     {
+    	logger.info("%1$s: >>>>>> Main execution started.");
     	
     	teclado.useDelimiter(System.getProperty("line.separator"));
 		teclado.useLocale(Locale.ENGLISH);
@@ -51,46 +52,55 @@ public class App
             		
             	case 1:
             			EmpleadoDAO.insertEmpleados(session, pedirEmpleado());
+            			logger.info("Usuario quiere INSERTAR un empleado.");
             		break;
             		
             	case 2:
     	        		System.out.println("Introduzca el codigo del empleado a borrar");
     	            	int id = teclado.nextInt();
+    	            	logger.info("Usuario quiere BORRAR un empleado.");
     	            	EmpleadoDAO.deleteEmpleado(session, id);
             		break;
             		
             	case 3:
             			System.out.println("Introduzca el codigo del empleado a modificar");
             			id = teclado.nextInt();
+            			logger.info("Usuario quiere MODIFICAR un empleado.");
             			EmpleadoDAO.updateEmpleado(session, id, pedirEmpleado());
             		break;
             		
             	case 4:
     	        		System.out.println("Introduzca el codigo del empleado a consultar");
     	    			id = teclado.nextInt();
+    	    			logger.info("Usuario quiere CONSULTAR un empleado.");
     	    			EmpleadoDAO.getEmpleado(session, id).toString();
             		break;
             		
             	case 5:
             			DepartamentoDAO.inserDepartamento(session, pedirDepartamento());
-            			
+            			logger.info("Usuario quiere INSERTAR un departamento.");
             		break;
             		
             	case 6:
     	        		System.out.println("Introduzca el codigo del departamento a borrar");
     	    			id = teclado.nextInt();
+    	    			logger.info("Usuario quiere BORRAR un departamento.");
     	    			DepartamentoDAO.deleteDepartamento(session, id);
             		break;
             		
             	case 7:
             			System.out.println("Introduzca el codigo del departamento a modificar");
             			id = teclado.nextInt();
+    	    			logger.info("Usuario quiere MODIFICAR un departamento.");
+
             			DepartamentoDAO.updateDepartamento(session, id, pedirDepartamento());
             		break;
             		
             	case 8:
         				System.out.println("Introduzca el codigo del departamento a consultar");
         				id = teclado.nextInt();
+    	    			logger.info("Usuario quiere CONSULTAR un departamento.");
+
         				DepartamentoDAO.getDepartamento(session, id).toString();
             		break;
             	case 0:

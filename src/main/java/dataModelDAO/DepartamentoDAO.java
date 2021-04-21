@@ -2,14 +2,20 @@ package dataModelDAO;
 
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso.App;
 import dataModelEntities.Departamento;
 
 public abstract class DepartamentoDAO {
 	
+	private static Logger logger = LogManager.getLogger(App.class);
+	
 	public static void inserDepartamento(Session s, Departamento depar) {
 		s.save(depar);
+		logger.info("Inserccion del departamento " + depar.toString());
 	}
 	
 	public static List<Departamento> getAllDepartamento(Session s){
@@ -33,6 +39,9 @@ public abstract class DepartamentoDAO {
 		Departamento depar = s.get(Departamento.class, departamentoId);
 		
 		s.delete(depar);
+		
+		logger.info("Borrado del departamento: " + depar.toString());
+		
 	}
 	
 	public static void updateDepartamento(Session s, int departamentoId, Departamento deparActualizado) {
@@ -43,6 +52,8 @@ public abstract class DepartamentoDAO {
 		depar.setNombre(deparActualizado.getNombre());
 		
 		s.update(depar);
+		
+		logger.info("Actualizacion del departamento: " + depar.toString());
 	}
 
 }
