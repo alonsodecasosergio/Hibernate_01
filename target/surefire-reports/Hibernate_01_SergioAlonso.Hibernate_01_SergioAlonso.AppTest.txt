@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s - in Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 s - in Hibernate_01_SergioAlonso.Hibernate_01_SergioAlonso.AppTest
