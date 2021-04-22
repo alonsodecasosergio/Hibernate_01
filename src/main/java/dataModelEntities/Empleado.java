@@ -9,7 +9,7 @@ public class Empleado implements Serializable{
 	private String apellido1;
 	private String apellido2;
 	private String lugarNacimiento;
-	private char fechaNacimiento;
+	private char[] fechaNacimiento;
 	private String direccion;
 	private String telefono;
 	private String puesto;
@@ -20,7 +20,7 @@ public class Empleado implements Serializable{
 	}
 
 	public Empleado(int codigo, String nombre, String apellido1, String apellido2, String lugarNacimiento,
-			char fechaNacimiento, String direccion, String telefono, String puesto, int cod_departamento) {
+			char[] fechaNacimiento, String direccion, String telefono, String puesto, int cod_departamento) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -74,11 +74,11 @@ public class Empleado implements Serializable{
 		this.lugarNacimiento = lugarNacimiento;
 	}
 
-	public char getFechaNacimiento() {
+	public char[] getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(char fechaNacimiento) {
+	public void setFechaNacimiento(char[] fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

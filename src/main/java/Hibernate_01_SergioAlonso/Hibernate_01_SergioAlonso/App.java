@@ -169,7 +169,8 @@ public class App
     	String nacimiento = teclado.next();
     	
     	System.out.println("Introduzca el fecha de nacimiento");
-    	char fechaNacimiento = teclado.next().charAt(0);
+    	String fecha = teclado.next();
+    	char[] fechaNacimiento = fecha.toCharArray();
     	
     	System.out.println("Introduzca direccion");
     	String direccion = teclado.next();
