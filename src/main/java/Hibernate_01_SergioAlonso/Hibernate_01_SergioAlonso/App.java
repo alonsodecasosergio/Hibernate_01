@@ -38,7 +38,7 @@ public class App
 		//INICIO DE SESION 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        //tx = session.beginTransaction();
+        tx = session.beginTransaction();
         
         int opcion = 0;
         
@@ -150,7 +150,7 @@ public class App
             }while(opcion != 0);//SI PULSA EL CERO SALDRA DEL MENU
             
         	//SI NO HA HABIDO NINGUN ERROR SE REALIZA EL VOLCADO A LA BASE DE DATOS
-            //tx.commit();
+            tx.commit();
         	
         }catch (Exception e) {
         	//EN CASE DE QUE HAYA UN ERROR SE REALIZA UN ROLLBACK

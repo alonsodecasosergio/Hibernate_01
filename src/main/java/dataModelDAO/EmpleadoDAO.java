@@ -76,6 +76,8 @@ public abstract class EmpleadoDAO {
 	
 	public static List<Empleado> getEmployeesToDepartament(Session s, int deparId) {
 		
+		logger.debug("Busqueda de empleados segun el departamento: " + deparId);
+		
 		String hQuery = " from Empleado e where e.cod_departamento = :cod_departamento";
 		
 		List<Empleado> empleado = s.createQuery(hQuery, Empleado.class)
@@ -87,6 +89,8 @@ public abstract class EmpleadoDAO {
 	public static List<Empleado> getEmployeesToAge(Session s, int edad) {
 				
 		Criteria cr = s.createCriteria(Empleado.class);
+		
+		logger.debug("Busqueda de los empleados mayores a " + edad + " años");
 		
 		Calendar cal= Calendar.getInstance();
 		int year= cal.get(Calendar.YEAR);
