@@ -31,7 +31,7 @@ public class Empleado implements Serializable{
 	private String lugarNacimiento;
 	
 	@Column(name = "FECHA_NACIMIENTO")
-	private char fechaNacimiento;
+	private char[] fechaNacimiento;
 	
 	@Column(name = "DIRECCION")
 	private String direccion;
@@ -50,7 +50,7 @@ public class Empleado implements Serializable{
 	}
 
 	public Empleado(int codigo, String nombre, String apellido1, String apellido2, String lugarNacimiento,
-			char fechaNacimiento, String direccion, String telefono, String puesto, int cod_departamento) {
+			char[] fechaNacimiento, String direccion, String telefono, String puesto, int cod_departamento) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -104,11 +104,11 @@ public class Empleado implements Serializable{
 		this.lugarNacimiento = lugarNacimiento;
 	}
 
-	public char getFechaNacimiento() {
+	public char[] getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(char fechaNacimiento) {
+	public void setFechaNacimiento(char[] fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

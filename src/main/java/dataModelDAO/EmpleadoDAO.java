@@ -1,5 +1,6 @@
 package dataModelDAO;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -84,11 +85,20 @@ public abstract class EmpleadoDAO {
 	}
 	
 	public static List<Empleado> getEmployeesToAge(Session s, int edad) {
+				
+		Criteria cr = s.createCriteria(Empleado.class);
 		
-		Criteria criteria = s.createCriteria(Empleado.class);
-		String fecha = edad + "/00/00";
-		List<Empleado> result = criteria.add(Restrictions.le("FECHA_NACIMIENTO", fecha)).list();
+		Calendar cal= Calendar.getInstance();
+		int year= cal.get(Calendar.YEAR);
 		
-		return result;
+		int añoReal = (year - edad) + 100; 
+		
+		String fecha = añoReal + "/00/00";
+		char[] array = fecha.toCharArray();
+		
+		cr.add(Restrictions.le("fechaNacimiento", array));
+		List results = cr.list();
+		
+		return results;
 	}
 }
